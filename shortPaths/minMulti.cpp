@@ -2,23 +2,26 @@
 using namespace std;
 
 int minimumMultiplications(vector<int> &arr, int start, int end){
-    long long mod = 1e5;
+    if(start == end)
+        return 0;
+    int mod = 1e5;
     vector<int> dist(100000, INT_MAX);
-    priority_queue<pair<int, long long>, vector<pair<int, long long>>, greater<pair<int, long long>>> pq;
+    queue<pair<int,int>> pq;
     pq.push({0, start});
     dist[start] = 0;
     while (!pq.empty())
     {
-        long long node = pq.top().second;
-        int steps = pq.top().first;
+        int node = pq.front().second;
+        int steps = pq.front().first;
         pq.pop();
-        if(node == end){
-            return steps;
-        }
         for(auto i: arr){
-            long long adjNode = (node * i) % mod;
-            if (adjNode <= end && steps + 1 < dist[adjNode])
+            int adjNode = (node * i) % mod;
+            if (steps + 1 < dist[adjNode]){
+                dist[adjNode] = steps + 1;
+                if(adjNode == end)
+                    return steps + 1;
                 pq.push({steps + 1, adjNode});
+            }
         }
     }
     return -1;
