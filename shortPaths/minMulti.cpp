@@ -3,9 +3,12 @@ using namespace std;
 
 int minimumMultiplications(vector<int> &arr, int start, int end){
     long long mod = 1e5;
+    vector<int> dist(100000, INT_MAX);
     priority_queue<pair<int, long long>, vector<pair<int, long long>>, greater<pair<int, long long>>> pq;
     pq.push({0, start});
-    while(!pq.empty()){
+    dist[start] = 0;
+    while (!pq.empty())
+    {
         long long node = pq.top().second;
         int steps = pq.top().first;
         pq.pop();
@@ -14,8 +17,8 @@ int minimumMultiplications(vector<int> &arr, int start, int end){
         }
         for(auto i: arr){
             long long adjNode = (node * i) % mod;
-            if(adjNode <= end)
-            pq.push({steps + 1, adjNode});
+            if (adjNode <= end && steps + 1 < dist[adjNode])
+                pq.push({steps + 1, adjNode});
         }
     }
     return -1;
