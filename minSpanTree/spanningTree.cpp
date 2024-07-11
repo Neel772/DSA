@@ -58,7 +58,7 @@ int spanningTree(int V, vector<vector<int>> adj[])
         int wt = edges[i].first;
 
         if(ds.find(u) != ds.find(v)){
-            mst += wt;
+            mst += wt;  
             ds.Union(u, v);
         }
     }
