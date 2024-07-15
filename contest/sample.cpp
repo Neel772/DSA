@@ -1,32 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-    int numberOfAlternatingGroups(vector<int>& colors) {
-        int n = colors.size();
-        int count = 0;
-        int sz = 1;
-        int lo = 0, hi = 0;
-        while (lo < n) {
-            if (colors[hi] != colors[(hi + 1) % n]) {
-                sz++;
-                hi = (hi + 1) % n;
-                if (sz == 3) {
-                    sz = 1;
-                    lo++;
-                    hi = lo;
-                    count++;
-                }
-            }
-            else {
-                lo++;
-                hi = lo;
-                sz = 1;
-            }
-        }
-        return count;
+int minimumCost(int m, int n, vector<int> &horizontalCut, vector<int> &verticalCut){
+    if(m == 1 && n == 1){
+        return 0;
     }
+    int horiSum = 0;
+    int vertSum = 0;
+    for (int i = 0; i < m; i++)
+        horiSum += horizontalCut[i];
+    for (int j = 0; j < n; j++)
+        vertSum += verticalCut[j];
+    if(m == 1 && n>1){
+        return vertSum;
+    }
+    else if(m>1 && n==1){
+        return horiSum;
+    }
+    else if(m ==2 && n == 2)
+        return horiSum;
+}
 
-    int main() {
-        vector<int>colors = { 1,0,1,0,1,1,0 };
-        cout << numberOfAlternatingGroups(colors);
-    }
+int main() {
+}
