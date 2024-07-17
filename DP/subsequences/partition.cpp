@@ -6,12 +6,14 @@ bool helper(int idx, int target, vector<vector<int>> &dp, vector<int> &nums){
         return true;
     if(idx == 0)
         return nums[idx] == target;
+        if(dp[idx][target] != -1)
+            return dp[idx][target];
     bool not_taken = helper(idx - 1, target, dp, nums);
     bool taken = false;
     if(nums[idx] <= target){
         taken = helper(idx - 1, target - nums[idx], dp, nums);
     }
-    return taken || not_taken;
+    return dp[idx][target] =  taken || not_taken;
 }
 
 bool canPartition(vector<int> &nums){
