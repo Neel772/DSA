@@ -7,19 +7,15 @@ int main(){
     int a[n + 1];
     for (int i = 0; i <= n; i++)
         cin >> a[i];
-    int left = 1, right = n;
-    while(left<right){
-        int mid = (left + right) / 2;
-        int cnt = 0;
-        for (int num : a)
-        {
-            if(num <= mid)
-                cnt++;
-        }
-        if(cnt >mid)
-            right = mid;
-        else
-            left = mid + 1;
+    int slow = a[0], fast = a[slow];
+    while(slow != fast){
+        slow = a[slow];
+        fast = a[a[fast]];
     }
-    cout << left << endl;
+    slow = 0;
+    while(slow != fast){
+        slow = a[slow];
+        fast = a[fast];
+    }
+    cout << slow << endl;
 }
