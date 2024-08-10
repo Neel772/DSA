@@ -42,7 +42,7 @@ Then we will find the all the subset sum in both the arrays i.e in the left arra
 
 We can store the sum with given values in MAP or in 2D vector acoording to our need, Here I've used vector because it is easy to access the value
 
-So here, to make left_ans either we can take all 3 from left_part and 0 from right_part, or 1 from left_part and (N-1) from right_part, 2 from left_part and (N-2) from right_part.
+So here, to make left_ans either we can take all N from left_part and 0 from right_part, or 1 from left_part and (N-1) from right_part, 2 from left_part and (N-2) from right_part.
 
  for eg : arr[] = [3,9,7,3]
  left array = [3,9] , right array = [7,3]
